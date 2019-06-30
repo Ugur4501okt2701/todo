@@ -1,11 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toDoList.main.MainController">
-    
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toDoList.main.MainController">
+   <children>
+      <VBox prefHeight="600.0" prefWidth="750.0">
+         <children>
+            <HBox prefHeight="0.0" prefWidth="750.0" spacing="5.0">
+               <children>
+                  <Label text="Tapşırıq : " textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="taskTF" prefHeight="29.0" prefWidth="244.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="15.0" layoutY="15.0" text="Kateqoriya : " textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="categoryCB" prefHeight="25.0" prefWidth="271.0" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefHeight="0.0" prefWidth="750.0" spacing="10.0">
+               <children>
+                  <Label text="Gün : " textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dayTF" prefHeight="29.0" prefWidth="91.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="15.0" layoutY="15.0" text="Tarix : " textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dateDP" />
+                  <Button fx:id="enterButton" mnemonicParsing="false" onAction="#enterButtonPressed" prefHeight="37.0" prefWidth="113.0" text="Daxil et" textFill="#4800ff">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="saveButton" layoutX="419.0" layoutY="15.0" mnemonicParsing="false" onAction="#saveButtonPressed" prefHeight="37.0" prefWidth="111.0" text="Redaktə et" textFill="#4800ff">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="deleteButton" layoutX="480.0" layoutY="15.0" mnemonicParsing="false" onAction="#deleteButtonPressed" prefHeight="37.0" prefWidth="63.0" text="Sil" textFill="#4800ff">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="50.0" prefHeight="0.0" prefWidth="750.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="101.0" text="Axtarış  : " textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="searchTF" onKeyReleased="#searchTFKeyReleased" prefHeight="29.0" prefWidth="194.0" promptText="Burada axtarış etmək olar">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="solveButton" mnemonicParsing="false" onAction="#solveButtonPressed" prefHeight="37.0" prefWidth="176.0" style="-fx-background-color: grey;" text="Statusu dəyişdir" textFill="#00ff0f">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="newCategoryButton" layoutX="419.0" layoutY="15.0" mnemonicParsing="false" onAction="#newCategoryButtonPressed" prefHeight="37.0" prefWidth="154.0" text="Yeni kateqoriya" textFill="#4800ff">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <CheckBox fx:id="allCheckBox" mnemonicParsing="false" prefHeight="21.0" prefWidth="109.0" text="Hamısını">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </CheckBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="97.0" prefHeight="51.0" prefWidth="750.0" spacing="20.0">
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <RadioButton fx:id="allRadioButton" mnemonicParsing="false" onAction="#allRadioButtonSelected" selected="true" text="Hamısı" textFill="#0015ff">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="toggleGroup" />
+                     </toggleGroup>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="solveRadioButton" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" onAction="#solveRadioButtonSelected" text="Həll olanlar" textFill="#0015ff" toggleGroup="$toggleGroup">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="dontSolveRadioButton" layoutX="111.0" layoutY="15.0" mnemonicParsing="false" onAction="#dontSolveRadioButtonSelected" text="Həll olmayanlar" textFill="#0015ff" toggleGroup="$toggleGroup">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </RadioButton>
+                  <Button fx:id="deleteCategoryButton" mnemonicParsing="false" onAction="#deleteCategoryButtonPressed" prefHeight="37.0" prefWidth="154.0" text="Kateqoriyanı sil" textFill="#4800ff">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <TableView fx:id="tasksTabelView" onMousePressed="#tasksTabelViewMousePressed" prefHeight="316.0" prefWidth="750.0">
+              <columns>
+                <TableColumn fx:id="idCol" minWidth="0.0" prefWidth="33.0" text="İD" />
+                <TableColumn fx:id="taskCol" prefWidth="244.0" text="Tapşırıq" />
+                  <TableColumn fx:id="dayCol" prefWidth="68.0" text="Gün" />
+                  <TableColumn fx:id="dateCol" prefWidth="178.0" text="Tarix" />
+                  <TableColumn fx:id="categoryCol" prefWidth="141.0" text="Kateqoriya" />
+                  <TableColumn fx:id="statusCol" prefWidth="85.0" text="Status" />
+              </columns>
+            </TableView>
+            <HBox layoutX="10.0" layoutY="144.0" prefHeight="51.0" prefWidth="750.0" spacing="20.0">
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+               <children>
+                  <Label fx:id="warningsLabel" prefHeight="28.0" prefWidth="748.0" text="Xəbərdarlıqlar" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="480.0" prefHeight="51.0" prefWidth="750.0">
+               <children>
+                  <Label layoutX="10.0" layoutY="15.0" prefHeight="28.0" prefWidth="102.0" text="Sətir sayı : " textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="rowCountLabel" prefHeight="28.0" prefWidth="162.0" text="Sətir sayı" textFill="#0700ff">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
